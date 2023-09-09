@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		scanf("$ %s", input);
+		printf("$ ");
+		scanf("%s", input);
 
 		if (strcmp(input, "exit") == 0)
 		{
@@ -26,7 +27,10 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-			printf("%s: No such file or directory\n", argv[0]);
+			if (argc == 1)
+			{
+				printf("%s: No such file or directory\n", argv[0]);
+			}
 		}
 	}
 	return (0);
