@@ -2,19 +2,28 @@
 /**
  * 
 */
-int main(int ac, char **argv)
+int main(int argc, char *argv[])
 {
-    char *sgn = "$ ";
-    char *l_ptr;
-    size_t n = 0;
+    char input[MAX_INPUT_SIZE];
+    char *args[] = { "hello", NULL};
 
-    (void)ac;
-    (void)argv;
-    
-    printf("%s", sgn);
-    getline(&l_ptr, &n, stdin);
-    printf("%s\n", l_ptr);
-    free(l_ptr);
-    
+    while (1)
+    {
+        scanf("$ %s", input);
+        
+        if (strcmp(input, "exit") == 0)
+        {
+            return (0);
+        }
+        else if (strcmp(input, "/bin/ls") == 0 || strcmp(input, "ls") == 0)
+        {
+            args[0] = input;
+            execvp(args[0], args);
+        }
+        else
+        {
+            printf("%s: No such file or directory\n", argv[0]);
+        }
+    }
     return(0);
 }
