@@ -5,10 +5,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/wait.h>
+#include <dirent.h>
 
 #define MAX_INPUT_SIZE 1024
 
-void l_files(char *args[]);
+void l_files(const char *directory_path);
 
 #endif

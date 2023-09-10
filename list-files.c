@@ -2,21 +2,25 @@
 /**
  * 
 */
-void l_files(char *args[])
+void l_files(const char *directory_path)
 {
-    pid_t pid = fork();
+    DIR *dir;
+    struct dirent *entry;
 
-    if (pid == 0)
-    {
-        execvp(args[0], args);
-        perror("evecvp");
-        exit(EXIT_FAILURE);
-    } else if (pid < 0)
-    {
-        perror("fork");
+    dir = opendir(directory_path);
+    if (dir == NULL)
+	{
+        perror("opendir");
+        return;
     }
-    else
-    {
-        wait(NULL);
+
+    while ((entry = readdir(dir)) != NULL)
+	{
+        if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
+		{
+            printf("%s ", entry->d_name);
+        }
     }
+	printf("\n");
+    closedir(dir);
 }

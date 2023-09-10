@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
 	char input[MAX_INPUT_SIZE];
-	char *args[] = { "ls", NULL};
+	char cwd[MAX_INPUT_SIZE];
 
 	while (1)
 	{
@@ -22,7 +22,14 @@ int main(int argc, char *argv[])
 		}
 		else if (strcmp(input, "/bin/ls") == 0 || strcmp(input, "ls") == 0)
 		{
-			l_files(args);
+			if (getcwd(cwd, sizeof(cwd)) != NULL)
+			{
+        		l_files(cwd);
+    		} else
+			{
+    		    perror("getcwd");
+    		    exit(EXIT_FAILURE);
+    		}
 		}
 		else
 		{
