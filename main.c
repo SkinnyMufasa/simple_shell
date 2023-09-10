@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
 	char input[MAX_INPUT_SIZE];
-	char *args[] = { "hello", NULL};
+	char *args[] = { "ls", NULL};
 
 	while (1)
 	{
@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
 		}
 		else if (strcmp(input, "/bin/ls") == 0 || strcmp(input, "ls") == 0)
 		{
-			args[0] = input;
-			execvp(args[0], args);
+			l_files(args);
 		}
 		else
 		{
